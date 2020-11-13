@@ -24,3 +24,11 @@ const { add, subtract } = require("./myModule");
 ```
 
 Once this is done, you can call the functions into your terminal using `node index.js`
+
+In order for you to hide the `node_modules` file, you need to create a file called `.gitignore` 
+
+```txt
+touch .gitignore
+```
+
+Once inside the .gitignore file, input the name of the package folders. Mine was `node_modules`. It will ignore any correctly spelled files inside of it. 
