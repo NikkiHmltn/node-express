@@ -32,3 +32,67 @@ touch .gitignore
 ```
 
 Once inside the .gitignore file, input the name of the package folders. Mine was `node_modules`. It will ignore any correctly spelled files inside of it. 
+
+##Adding Express
+
+1. Install Express locally onto your project with: 
+
+```txt
+npm i express
+```
+
+2. Set up expres in your project with: 
+
+```js
+const express = require('express')
+const app = express();
+app.set('view engine', 'ejs')
+```
+
+3. You can use `render` to set up routes from the app to the port. ALL .HTML FILES NEED TO BE .EJS Ex: 
+
+```js
+app.get('/about', function(req, res){
+    res.render('about')
+    
+});
+```
+Inside the `about.ejs` files looks like: 
+
+```html
+<h1>ABOUT ME</h1>
+```
+
+4. To set up an easy templace (like a nav bar) or other things you want to change (and not have to change across all the files), you need a template. That template needs to also be an `.ejs` file with the code to carry across all files. 
+
+Ex: 
+
+```html
+<header>
+    <nav>
+        <ul>
+            <li>home</li>
+            <li>about</li>
+            <li>blog</li>
+            <li>here</li>
+        </ul>
+    </nav>
+</header>
+```
+
+Once this file is set up, you need to link it to every single file as so: `<%- include('nav') %> `
+
+5. In order to reference variables inside of your ejs files, you have to use the "ice cream" bracets to reference variables. 
+
+```html
+<%- include('nav') %> 
+<h1>BLOGGER</h1>
+<div>You're lookin at the blog entry for</div>
+<%= date %> 
+```
+```js
+app.get('/blog/:date', (req, res) => {
+    console.log(req)
+    res.render('blog', {date: req.params.date})
+});
+```
